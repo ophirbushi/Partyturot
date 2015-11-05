@@ -1,0 +1,30 @@
+/* CSS declarations go here */
+body {
+    font-size: 2em;
+}
+
+.tab-content{
+    width: 300px;
+    margin: auto;
+}
+
+.unselectable {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.xdelete {
+    cursor: pointer;
+}
+
+.xdelete_assignment{
+	cursor:pointer;
+}
+
+#add_mark_input{
+	width: 3.5em;
+}
+
+#mark_received_date_input{
+	
+}
