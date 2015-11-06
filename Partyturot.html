@@ -11,58 +11,62 @@
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation"><a href="#marks" aria-controls="marks" role="tab" data-toggle="tab">Marks</a></li>
             <li role="presentation" class="active"><a href="#assignments" aria-controls="assignments" role="tab" data-toggle="tab">Assignments</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+            <li role="presentation"><a href="#attendance" aria-controls="attendance" role="tab" data-toggle="tab">Attendance</a></li>
             <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
         </ul>
-
         <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane" id="marks">           
+
+            <div role="tabpanel" class="tab-pane" id="marks">
                 <div style="margin-top:10px" id="average">Average: {{average}}</div>
                 <div style="margin-top:10px;" id="add_mark_form">
                     <div>
-						<span>Mark: </span>
-						<input type="text" id="add_mark_input" />
-					</div>
-					<div>
-						<span>Received date: </span>
-						<input type="date" id ="mark_received_date_input" />
-					</div>
-                    <span style="user-select:none; cursor:pointer; -webkit-user-select:none; display:inline-block; padding:4px 8px; background:rgb(200,200,200);" id="add_mark_button">Add new mark</span>
+                        <span>Mark: </span>
+                        <input type="text" id="add_mark_input" />
+                    </div>
+                    <div>
+                        <span>Received date: </span>
+                        <input type="date" id="mark_received_date_input" />
+                    </div>
+                    <span id="add_mark_button" class="partyturot_button">Add new mark</span>
                 </div>
                 <div id="marks_list">
-				<div style="margin: 10px 0;">Marks: </div>
+                    <div style="margin: 10px 0;">Marks: </div>
                     {{#each marks}}
                     {{> mark}}
                     {{/each}}
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane active" id="assignments">
-			
-			<div id="add_assignment">
-				<textarea id= "add_assignment_text_input"></textarea>
-					<div>Due date: <input type="date" id ="assignment_due_date_input" /></div>
-				<div style="user-select:none; cursor:pointer; -webkit-user-select:none; display:inline-block; padding:4px 8px; background:rgb(200,200,200);" id ="add_assignment_button">Add assignment</div>
-			</div>
-				<ul>
-					{{#each assignments}}
-					{{>assignment}}
-					{{/each}}
-				</ul>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="messages">
 
+            <div role="tabpanel" class="tab-pane active" id="assignments">
+                <div id="add_assignment">
+                    <textarea id="add_assignment_text_input"></textarea>
+                    <div>Due date: <input type="date" id="assignment_due_date_input" /></div>
+                    <div id="add_assignment_button" class="partyturot_button">Add assignment</div>
+                </div>
+                <ul>
+                    {{#each assignments}}
+                    {{>assignment}}
+                    {{/each}}
+                </ul>
             </div>
+
+            <div role="tabpanel" class="tab-pane" id="attendance">             
+                {{#each attendances}}
+                {{> attendance}}
+                {{/each}}
+            </div>
+
             <div role="tabpanel" class="tab-pane" id="settings">
 
             </div>
+
         </div>
-
     </div>
-
     <script src="client/jquery-2.1.4.min.js"></script>
     <script src="client/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 <template name="mark">
     <li style="list-style:none;">
         <span class="xdelete unselectable">X</span>
@@ -70,9 +74,15 @@
     </li>
 </template>
 <template name="assignment">
-<li>
-<div class="xdelete_assignment">X</div>
-<div>Assignment: {{text}}</div>
-<div>Due date: {{dueDate}}</div>
-</li>
+    <li>
+        <div class="xdelete_assignment">X</div>
+        <div>Assignment: {{text}}</div>
+        <div>Due date: {{dueDate}}</div>
+    </li>
+</template>
+<template name="attendance">
+    <li>
+        <input type="checkbox" checked={{checked}}/> 
+        <span>Class number: {{classNumber}}</span>
+    </li>
 </template>
