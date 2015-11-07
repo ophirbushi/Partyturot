@@ -67,6 +67,12 @@ if (Meteor.isClient) {
             return this.attendance.find({});
         }
     });
+
+    Template.course.events({
+        "click .swap_course": function () {
+            toggleCourses();
+        }
+    });
 }
 
 if (Meteor.isServer) {

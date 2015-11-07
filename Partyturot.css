@@ -5,3 +5,7 @@ body{
 .non_active_course {
     display: none;
 }
+
+.tab-content{
+    margin-top:50px;
+}
