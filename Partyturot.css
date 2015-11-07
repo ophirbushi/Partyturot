@@ -1,3 +1,7 @@
+body{
+    background-image: url("content/textured_paper.png");
+}
+
 .non_active_course {
     display: none;
 }
