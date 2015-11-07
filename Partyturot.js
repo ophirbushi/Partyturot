@@ -1,43 +1,7 @@
-Marks2 = new Mongo.Collection("marks2");
-Marks3 = new Mongo.Collection("marks3");
-Assignments2 = new Mongo.Collection("assignments2");
-Assignments3 = new Mongo.Collection("assignments3");
-Attendance2 = new Mongo.Collection("attendance2");
-Attendance3= new Mongo.Collection("attendance3");
+Marks = new Mongo.Collection("marks");
+Assignments= new Mongo.Collection("assignments");
+Attendance = new Mongo.Collection("attendance");
 
-Marks = Marks3;
-Assignments = Assignments3;
-Attendance = Attendance3;
-
-courseManager = (function () {
-    var currentCourse = "p3";
-
-    function _changeGlobalCollectionNames(toCourseName) {
-        if (toCourseName == "p2") {
-            Marks = Marks2;
-            Assignments = Assignments2;
-            Attendance = Attendance2;
-        }
-        else if (toCourseName == "p3"){
-            Marks = Marks3;
-            Assignments = Assignments3;
-            Attendance = Attendance3;
-        }
-        else {
-            alert("bug: unknown course name");
-        }
-    }
-
-    function swapCourses(toCourseName) {
-        currentCourse = toCourseName;
-        _changeGlobalCollectionNames(toCourseName);
-    }
-
-    return {
-        "currentCourse": currentCourse,
-        "swapCourses": swapCourses
-    };
-}());
 
 function isValidMark(text) {
     var num = parseInt(text);
@@ -101,8 +65,14 @@ if (Meteor.isClient) {
             });
             $("#add_assignment_text_input").val("");
             $("#assignment_due_date_input").val("");
+        },
+        "click #swapCourseButton": function (event) {
+            event.preventDefault();
+            courseManager.swapCourses("p2");
+            Session.set("currentCourse", courseManager.currentCourse);
         }
     });
+
 
     Template.assignment.helpers({
         "text": function () {
@@ -110,8 +80,7 @@ if (Meteor.isClient) {
         },
         "dueDate": function () {
             return this.dueDate;
-        }
-
+        },
     });
 
     Template.assignment.events({
@@ -128,8 +97,6 @@ if (Meteor.isClient) {
             return this.classNumber;
         }
     });
-
-
 }
 
 if (Meteor.isServer) {
