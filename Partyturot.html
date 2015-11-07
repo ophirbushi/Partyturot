@@ -1,14 +1,15 @@
 ﻿<head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="client/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="client/bootstrap/css/bootstrap-theme.min.css" />
     <title>Partyturot</title>
 </head>
 <body>
-
-
+    {{#each courses}}
+    {{> course}}
+    {{/each}}
 
     <script src="client/jquery-2.1.4.min.js"></script>
     <script src="client/bootstrap/js/bootstrap.min.js"></script>
